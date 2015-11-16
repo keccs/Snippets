@@ -136,15 +136,15 @@ void send_serial_signal() {
 	}
 
 	int status;
-	ioctl(fd, TIOCMGET, &status);
+	ioctl(ser, TIOCMGET, &status);
 
 	status |= TIOCM_DTR;
-	ioctl(fd, TIOCMSET, &status);
+	ioctl(ser, TIOCMSET, &status);
 
 	usleep(2000 * 1000);
 
 	status &= ~TIOCM_DTR;
-	ioctl(fd, TIOCMSET, &status);
+	ioctl(ser, TIOCMSET, &status);
 
 	close(ser);
 }
